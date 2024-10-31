@@ -7,7 +7,8 @@ st.write(
 )
 
 st.selectbox(
-    label=('Join','Group by',
+    label='What would you like to review ?',
+    options=('Join','Group by',
            'Window functions'),
     index=None,
     placeholder='Select a theme...'
