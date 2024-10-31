@@ -30,7 +30,7 @@ st.write(
 query = st.text_area(label='Enter your SQL query')
 st.dataframe(db.sql(query))
 
-tables, solution, tab3 = st.tabs(['Tables', 'Solutions'])
+tables, solution = st.tabs(['Tables', 'Solution'])
 
 with tables:
     st.dataframe(tableau_df)
