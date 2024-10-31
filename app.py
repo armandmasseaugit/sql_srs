@@ -2,6 +2,18 @@ import pandas as pd
 import streamlit as st
 import duckdb as db
 
+st.write(
+    '''# SQL Space Repetition System'''
+)
+
+st.selectbox(
+    label=('Join','Group by',
+           'Window functions'),
+    index=None,
+    placeholder='Select a theme...'
+)
+
+
 st.write('Le tableau tableau_df est défini comme tel :')
 
 tableau_df = pd.DataFrame(
