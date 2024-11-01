@@ -2,30 +2,41 @@ import pandas as pd
 import streamlit as st
 import duckdb as db
 
+tableau_df = pd.DataFrame(
+    {'name': ['John', 'Alice', 'Bob'],
+       'age': [25, 30, 35],
+       'city': ['New York', 'London', 'Paris']}
+)#.set_index('Name')
+
 st.write(
     '''# SQL Space Repetition System'''
 )
 
 st.selectbox(
-    label=('Join','Group by',
+    label='What would you like to review ?',
+    options=('Join','Group by',
            'Window functions'),
     index=None,
     placeholder='Select a theme...'
 )
 
-
 st.write('Le tableau tableau_df est défini comme tel :')
 
-tableau_df = pd.DataFrame(
-    {'Name': ['John', 'Alice', 'Bob'],
-       'Age': [25, 30, 35],
-       'City': ['New York', 'London', 'Paris']}
-)#.set_index('Name')
+st.write(
+    '''Write an SQL query to only display 
+    the lines of people aged>27yo'''
+)
 
-st.dataframe(tableau_df)
+query = st.text_area(label='Enter your SQL query')
+st.dataframe(db.sql(query))
 
-tab1, tab2, tab3 = st.tabs(['Select','f','t'])
+tables, solution = st.tabs(['Tables', 'Solution'])
 
-with tab1:
-    query = st.text_area(label='Entrez votre requête SQL')
-    st.dataframe(db.sql(query))
+with tables:
+    st.dataframe(tableau_df)
+
+with solution:
+    st.dataframe(
+        tableau_df
+        .query('age>=27')
+    )
